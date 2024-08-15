@@ -8,7 +8,6 @@ export default function HomePage() {
   return (
     <div>
       <TopicsList />
-
       <h2 className="text-red-700 font-bold p-1">Map with Markers</h2>
       <Map />
     </div>
