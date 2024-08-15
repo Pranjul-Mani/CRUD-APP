@@ -10,29 +10,16 @@ const getTopicById = async (id) => {
       throw new Error("Failed to fetch topic");
     }
 
-    const data = await res.json();
-
-
-    if (!data || !data.topic) {
-      throw new Error("Topic data is missing or incorrect");
-    }
-
-    return data.topic;
+    return res.json();
   } catch (error) {
-    console.error("Error fetching topic:", error);
-    return null;
+    console.log(error);
   }
 };
 
 export default async function EditTopic({ params }) {
-  const topic = await getTopicById(params.id);
+  const { id } = params;
+  const { topic } = await getTopicById(id);
+  const { title, description } = topic;
 
-  if (!topic) {
-    return <div>Error loading topic</div>;
-  }
-
-  return <EditTopicForm {...topic} />;
+  return <EditTopicForm id={id} title={title} description={description} />;
 }
-
-const data = await res.json();
-console.log("API Response:", data);
